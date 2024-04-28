@@ -1,6 +1,10 @@
-<h1> {{title}} </h1>
+<h1> {{ title }} </h1>
 <ul>
   <li *ngFor="let task of tasks">
-    {{task.title}} - {{task.completed}}
+    {{ task.title }} - {{ task.completed }}
   </li>
 </ul>
+<hr/>
+<h2>{{'Hola '.repeat(4)}}</h2>
+<p> la suma de 2 + 2 es {{ 2 + 2 }} </p>
+<p> hola, soy {{ name }} y tengo {{ age }} </p>

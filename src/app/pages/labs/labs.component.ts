@@ -9,10 +9,12 @@ import { CommonModule } from "@angular/common";
   styleUrl: './labs.component.css'
 })
 export class LabsComponent {
-  title = 'Home';
-  tasks = [
+  protected title = 'Home';
+  protected tasks = [
     { title: 'Task 1', completed: false },
     { title: 'Task 2', completed: true },
     { title: 'Task 3', completed: false }
   ];
+  protected name = 'Jesus';
+  protected age = 27;
 }
