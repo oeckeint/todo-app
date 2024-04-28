@@ -17,4 +17,13 @@ export class LabsComponent {
   ];
   protected name = 'Jesus';
   protected age = 27;
+  protected disabled = false;
+  protected imagen = 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png';
+
+  protected person = {
+    name: 'Jesus',
+    age: 27,
+    avatar : 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
+  };
+
 }
