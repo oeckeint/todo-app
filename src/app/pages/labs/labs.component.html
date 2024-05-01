@@ -30,5 +30,17 @@
   <p> hola, soy {{ signalName() }} y tengo {{ age }} </p>
   <input type="text" [value]="signalInputName()" (change)="signalChangeHandler($event)" name="" id="">
 
+  <hr/>
+  <h2>Directivas de control</h2>
+  <hr/>
+  <h4>for</h4>
+  <ul>
+    <p> total tasks: {{ signalTasks().length }} </p>
+    <li *ngFor="let task of signalTasks(); index as i" >
+      {{ i + 1 }}.- {{ task.title }} - {{ task.completed }}
+    </li>
+  </ul>
+
+
 
 </div>

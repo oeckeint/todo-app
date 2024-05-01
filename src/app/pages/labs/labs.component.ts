@@ -43,10 +43,17 @@ export class LabsComponent {
   //Signal Implementation
   protected signalName = signal('Jesus');
   protected signalInputName = signal('');
+
   protected signalChangeHandler(event: Event) {
     const input = event.target as HTMLInputElement;
     const newInputValue = input.value.toUpperCase()
     this.signalName.set(newInputValue);
   }
+
+  protected signalTasks = signal([
+    { title: 'Task 1', completed: false },
+    { title: 'Task 2', completed: true },
+    { title: 'Task 3', completed: false }
+  ]);
 
 }
