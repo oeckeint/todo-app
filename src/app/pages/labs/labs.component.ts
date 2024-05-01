@@ -26,4 +26,17 @@ export class LabsComponent {
     avatar : 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
   };
 
+  clickHandler() {
+    alert('Button clicked');
+  }
+
+  changeHandler(event: Event) {
+    console.log(event);
+  }
+
+  protected keydownHandler(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    console.log(input.value);
+  }
+
 }

@@ -1,15 +1,27 @@
-<h1> {{ title }} </h1>
-<ul>
-  <li *ngFor="let task of tasks">
-    {{ task.title }} - {{ task.completed }}
-  </li>
-</ul>
-<hr/>
-<h2>{{'Hola '.repeat(4)}}</h2>
-<p> la suma de 2 + 2 es {{ 2 + 2 }} </p>
-<p> hola, soy {{ name }} y tengo {{ age }} </p>
-<hr/>
-<img [src]="imagen" alt="" />
-<input type="text"  [value]="person.age">
-<button [disabled]="disabled">Enviar</button>
-<p> persona: {{ person.name }} </p>
+<div class="container">
+  <h1> {{ title }} </h1>
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{ task.title }} - {{ task.completed }}
+    </li>
+  </ul>
+  <hr/>
+  <h2>{{'Hola '.repeat(4)}}</h2>
+  <p> la suma de 2 + 2 es {{ 2 + 2 }} </p>
+  <p> hola, soy {{ name }} y tengo {{ age }} </p>
+  <hr/>
+  <img [src]="imagen" alt="" />
+  <input type="text"  [value]="person.age">
+  <button [disabled]="disabled">Enviar</button>
+  <p> persona: {{ person.name }} {{ person.avatar }}</p>
+  <hr/>
+  <button (click)="clickHandler()"> click me </button>
+  <br>
+  <button (dblclick)="clickHandler()"> double click </button>
+  <p>(change)</p>
+  <input type="number" [value]="person.age" (change)="changeHandler($event)">
+  <p>(KeyDown)</p>
+  <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+  <p>(KeyDown shift + t)</p>
+  <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+</div>
