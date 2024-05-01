@@ -24,4 +24,11 @@
   <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
   <p>(KeyDown shift + t)</p>
   <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+
+  <hr>
+  <h2>Signals</h2>
+  <p> hola, soy {{ signalName() }} y tengo {{ age }} </p>
+  <input type="text" [value]="signalInputName()" (change)="signalChangeHandler($event)" name="" id="">
+
+
 </div>

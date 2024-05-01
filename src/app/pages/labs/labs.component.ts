@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from "@angular/common";
+import { signal } from "@angular/core";
 
 @Component({
   selector: 'app-labs',
@@ -37,6 +38,15 @@ export class LabsComponent {
   protected keydownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     console.log(input.value);
+  }
+
+  //Signal Implementation
+  protected signalName = signal('Jesus');
+  protected signalInputName = signal('');
+  protected signalChangeHandler(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newInputValue = input.value.toUpperCase()
+    this.signalName.set(newInputValue);
   }
 
 }
