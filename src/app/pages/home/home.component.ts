@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {CommonModule, JsonPipe, NgForOf, NgIf} from "@angular/common";
+import { CommonModule, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import { signal } from "@angular/core";
 import { TaskModel } from "./../../models/task.model";
+import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,9 @@ import { TaskModel } from "./../../models/task.model";
   imports: [
     NgForOf,
     JsonPipe,
-    NgIf
+    NgIf,
+    CommonModule,
+    ReactiveFormsModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -35,6 +38,7 @@ export class HomeComponent {
   }
 
   private addNewTask(newTaskTitle: string) {
+    if (newTaskTitle.trim() == '') return;
     const newTaskObject : TaskModel = {
       id: Date.now(),
       title : newTaskTitle,
@@ -58,6 +62,24 @@ export class HomeComponent {
       (tasks) => tasks.filter(
                     (_, currentIndex) => currentIndex !== indexToDelete)
     );
+  }
+
+  protected newTaskControl = new FormControl(
+    '',
+    {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.pattern(/^[a-zA-Z0-9\s]+$/)
+      ]
+    }
+  );
+
+  protected addNewTaskControl() {
+    if (this.newTaskControl.invalid) return;
+    this.addNewTask(this.newTaskControl.value);
+    this.newTaskControl.reset();
   }
 
 }

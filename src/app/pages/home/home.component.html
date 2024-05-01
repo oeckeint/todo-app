@@ -9,7 +9,8 @@
         autofocus
         type="text"
         [value]="signalNewTaskInput()"
-        (keydown.enter)="processNewTask($event)"
+        [formControl]="newTaskControl"
+        (keydown.enter)="addNewTaskControl()"
       />
     </div>
   </header>
@@ -17,11 +18,6 @@
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main">
       <ul class="todo-list">
-        <pre>
-          <code>
-            {{ signalTasks() | json }}
-          </code>
-        </pre>
         <li *ngFor="let task of signalTasks(); index as i">
           <div class="view">
             <input class="toggle" type="checkbox" [checked]="task.completed" (change)="updateTask(i)"/>
