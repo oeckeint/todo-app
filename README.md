@@ -1,27 +1,54 @@
-# TodoApp
+# Todo-App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+Aplicacion sencilla para tener una lista de activdades diarias, almacena los datos en el almacenamiento local del buscador. La aplicacion estaba basada en progamacion funcional y reactiva
 
-## Development server
+### Pre-requisitos 📋
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Necesitas tener instalado principalmente Node JS
 
-## Code scaffolding
+### Instalación 🔧
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+npm install
 
-## Build
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Despliegue 📦
+La aplicacion actualmente se encuentra dezplegada en https://my-day-app-4169a.firebaseapp.com/
+Si tu quieres desplegar la aplicacion sigue estos pasos
 
-## Running unit tests
+```
+npm build
+firebase login
+firebase init
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+What do you want to use as your public directory? dist/todoapp/browser 
+Configure as a single-page app (rewrite all urls to /index.html)? Yes ? 
+Set up automatic builds and deploys with GitHub? No
+File dist/todoapp/browser/index.html already exists. Overwrite? No
 
-## Running end-to-end tests
+firebase deploy --only hosting --project nombre_de_tu_proyecto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
 
-## Further help
+## Construido con 🛠️
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* [Angular](https://angular.io/) - El framework web usado
+* [NPM](https://www.npmjs.com/) - Manejador de dependencias
+* [TypeScript](https://www.typescriptlang.org/) - Lenguaje de programación
+
+## Autores ✒️
+
+* **Jesus Sanchez**  - [oeckeint](https://github.com/oeckeint)
+
+## Licencia 📄
+
+Este proyecto está bajo la Licencia Libre
+
+## Expresiones de Gratitud 🎁
+
+* Comenta a otros sobre este proyecto 📢
+* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
+* Muchas gracias este proyecto fue creado con ayuda de varios cursos 🤓.
+
+##La documentacion aun no esta completa y puede ser que algunos datos no esten actualizados
