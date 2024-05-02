@@ -1,8 +1,8 @@
-import {Component, computed} from '@angular/core';
+import { Component, computed, effect, Injector, inject } from '@angular/core';
 import { CommonModule, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import { signal } from "@angular/core";
 import { TaskModel } from "./../../models/task.model";
-import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -20,12 +20,7 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 
 export class HomeComponent {
 
-  protected signalTasks = signal<TaskModel[]> ([
-    { id: Date.now(), title: 'Instalar Angular CLI', completed: false },
-    { id: Date.now(), title: 'Crear Proyecto', completed: true },
-    { id: Date.now(), title: 'Crear Componente', completed: false },
-    { id: Date.now(), title: 'Crear Servicio', completed: false }
-  ]);
+  protected signalTasks = signal<TaskModel[]> ([]);
 
   protected signalNewTaskInput = signal('');
 
@@ -119,6 +114,25 @@ export class HomeComponent {
 
   protected changeFilter(filter: 'all' | 'pending' | 'completed') {
     this.filter.set(filter);
+  }
+
+  Injector = inject(Injector);
+
+  protected ngOnInit() {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      this.signalTasks.set(JSON.parse(storedTasks));
+    }
+    this.trackTasks();
+  }
+
+  protected trackTasks(){
+    effect(() => {
+      const tasks = this.signalTasks();
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    },
+      {injector: this.Injector}
+    );
   }
 
 }
