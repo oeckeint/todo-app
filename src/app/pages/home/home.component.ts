@@ -75,6 +75,7 @@ export class HomeComponent {
     if (this.newTaskControl.invalid) return;
     this.addNewTask(this.newTaskControl.value);
     this.newTaskControl.reset();
+    this.changeFilter('all');
   }
 
   protected activateEditionTask(indexToUpdate: number) {
@@ -97,6 +98,13 @@ export class HomeComponent {
       (tasks) => tasks.map(
                   (task, currentIndex) =>
                     currentIndex === indexToUpdate ? { ...task, title: newTitle.value, editing: false } : task
+              ));
+  }
+
+  protected deleteAllCompletedTasks() {
+    this.signalTasks.update(
+      (tasks) => tasks.filter(
+                  (task) => !task.completed
               ));
   }
 
