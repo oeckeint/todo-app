@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, computed} from '@angular/core';
 import { CommonModule, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import { signal } from "@angular/core";
 import { TaskModel } from "./../../models/task.model";
@@ -104,4 +104,21 @@ export class HomeComponent {
                     currentIndex === indexToUpdate ? { ...task, title: newTitle.value, editing: false } : task
               ));
   }
+
+  protected filter = signal<'all' | 'pending' | 'completed'> ('all');
+
+  protected tasksByFilter = computed(() => {
+    const tasks = this.signalTasks();
+    const filter = this.filter();
+
+    if (filter === 'pending') return tasks.filter((task) => !task.completed);
+    if (filter === 'completed') return tasks.filter((task) => task.completed);
+
+    return tasks;
+  });
+
+  protected changeFilter(filter: 'all' | 'pending' | 'completed') {
+    this.filter.set(filter);
+  }
+
 }

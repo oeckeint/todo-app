@@ -19,7 +19,7 @@
     <section class="main">
       <ul class="todo-list">
         <li
-          *ngFor="let task of signalTasks(); index as i"
+          *ngFor="let task of tasksByFilter(); index as i"
           (dblclick)="activateEditionTask(i)"
           [class.editing]="task.editing"
           [class.completed]="task.completed"
@@ -63,19 +63,19 @@
     <footer class="footer">
       <!-- This should be `0 items left` by default -->
       <span class="todo-count">
-        <strong>{{ signalTasks().length }} </strong>
+        <strong>{{ tasksByFilter().length }} </strong>
         item<ng-container *ngIf="signalTasks().length != 1">s</ng-container>
       </span>
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
         <li>
-          <a routerLink="/" class="selected">All</a>
+          <a (click)="changeFilter('all')" [class.selected]="filter() === 'all'">All</a>
         </li>
         <li>
-          <a routerLink="/pending">Pending</a>
+          <a (click)="changeFilter('pending')" [class.selected]="filter() === 'pending'">Pending</a>
         </li>
         <li>
-          <a routerLink="/completed">Completed</a>
+          <a (click)="changeFilter('completed')" [class.selected]="filter() === 'completed'">Completed</a>
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->
