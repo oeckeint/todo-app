@@ -82,4 +82,26 @@ export class HomeComponent {
     this.newTaskControl.reset();
   }
 
+  protected activateEditionTask(indexToUpdate: number) {
+    this.signalTasks.update(
+      (tasks) => tasks.map(
+                  (task, currentIndex) => ({ ...task, editing: currentIndex === indexToUpdate })
+              ));
+  }
+
+  protected deactivateEditionTask(indexToUpdate: number) {
+    this.signalTasks.update(
+      (tasks) => tasks.map(
+                  (task, currentIndex) => ({ ...task, editing: currentIndex === indexToUpdate ? false : task.editing })
+              ));
+  }
+
+  protected updateTaskTitle(indexToUpdate: number, event: Event) {
+    const newTitle = event.target as HTMLInputElement;
+    this.signalTasks.update(
+      (tasks) => tasks.map(
+                  (task, currentIndex) =>
+                    currentIndex === indexToUpdate ? { ...task, title: newTitle.value, editing: false } : task
+              ));
+  }
 }
